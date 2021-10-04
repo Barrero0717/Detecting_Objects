@@ -24,7 +24,7 @@ def main():
 
         # Compute the absolute difference between the current frame and first frame        
         delta_frame = cv2.absdiff(first_frame,gray)
-        thresh_frame = cv2.threshold(delta_frame, 25, 255, cv2.THRESH_BINARY)[1]
+        thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
         
         # Dilate the thresholded image to fill in holes, then find contour on thresholded image 
         thresh_frame = cv2.dilate(thresh_frame, None, iterations=2)
@@ -37,7 +37,7 @@ def main():
                 continue
             # Compute the bounding box for the contour, draw it on the frame, and update the text        
             (x, y, w, h) = cv2.boundingRect(countour)
-            cv2,cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,0), 3)
+            cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,0), 3)
             text = "Detecting objects"
 
         # Draw the text and timestamp on the frame
